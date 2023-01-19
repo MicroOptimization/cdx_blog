@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div>
+    <form method="POST">
+        <h2>Add New Article</h2>
+        <label>Title</label><br>
+        <input type="text" name="title_form"><br><br>
+
+        <label>Tags (Separate with commas)</label><br>
+        <input type="text" name="tag_form"><br><br>
+
+        <label>Text</label><br>
+        <textarea rows="25" cols="150" name="content_form"></textarea><br><br>
+        
+        <input type="submit" method="POST">
+    </form>
+</div>
+{% endblock %}
