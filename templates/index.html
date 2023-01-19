@@ -10,7 +10,7 @@
 <div style="margin-bottom: 100px">
     {% if session['logged_in'] == True %}
         <h3 style="font-size:20px;">Welcome User: {{ session.username }}</h3>
-        <h3 style="font-size:15px; margin-top:0px;"><a href="logout">Logout</a></h3>
+        <h3 style="font-size:16px; margin-top:0px;"><a href="logout">Logout</a></h3>
     {% else %}
         <h3 style="font-size:20px;"><a href="login.html">Login</a></h3>
     {% endif %}
