@@ -98,7 +98,7 @@ def login():
     if request.method == "POST":
         username_input = request.form["username_input"]
         password_input = request.form["password_input"]
-        print(username_input, password_input)
+        #print(username_input, password_input)
         user = User.query.filter_by(username=username_input).first()
 
         if user: #aka there is a user with that username
@@ -107,7 +107,7 @@ def login():
                 session["logged_in"] = True
                 session["username"] = user.username
                 session["user_id"] = user.id
-                print("logged in: " , session["username"])#
+                #print("logged in: " , session["username"])#
                 return redirect("/")
             else:
                 return render_template("login.html")
