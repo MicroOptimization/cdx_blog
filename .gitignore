@@ -3,4 +3,5 @@ env3
 instance
 myvirtualenv
 __pycache__/
-!/*.zip
+.zip
+.rar
