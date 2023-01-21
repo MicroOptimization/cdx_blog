@@ -9,12 +9,12 @@ import secrets
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 
-app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI']="sqlite:///"+os.path.join(basedir, "instance/posts.db")
-app.secret_key = secrets.token_urlsafe(16)
+application = Flask(__name__)
+application.config['SQLALCHEMY_DATABASE_URI']="sqlite:///"+os.path.join(basedir, "instance/posts.db")
+application.secret_key = secrets.token_urlsafe(16)
     
-with app.app_context():
-    db = SQLAlchemy(app)
+with application.app_context():
+    db = SQLAlchemy(application)
 
 
 class Article(db.Model):
@@ -36,13 +36,13 @@ class User(db.Model):
     def __repr__(self):
         return '<Task %r>' % self.id
 
-@app.route("/")
+@application.route("/")
 def main():
     #session['logged_in'] = False
     articles = Article.query.order_by(Article.date_created.desc()).all()
     return render_template("index.html", articles=articles, session=session)
 
-@app.route("/new_article.html", methods=['GET', 'POST'])
+@application.route("/new_article.html", methods=['GET', 'POST'])
 def add_new_article():
     if request.method == 'POST':
         new_article = Article(title=request.form['title_form'], content=request.form['content_form'], tags=request.form['tag_form'])
@@ -61,7 +61,8 @@ def add_new_article():
             return render_template("new_article.html")
         else:
             return redirect("/login.html")
-@app.route("/delete/<int:id>") #<int:id> id is the variable name that we're passing from our html, must be in the method parameters as well
+
+@application.route("/delete/<int:id>") #<int:id> id is the variable name that we're passing from our html, must be in the method parameters as well
 def delete(id):
     if session.get('logged_in') == True:
         delete_me = Article.query.get_or_404(id)
@@ -74,7 +75,7 @@ def delete(id):
     else:
         return redirect("/login.html")
 
-@app.route("/edit/<int:id>", methods=['POST', 'GET'])
+@application.route("/edit/<int:id>", methods=['POST', 'GET'])
 def edit(id):
     article_to_edit = Article.query.get_or_404(id)
     if request.method == "POST":
@@ -92,7 +93,7 @@ def edit(id):
             return render_template("edit.html", article=article_to_edit)
         else:
             return redirect("/login.html")
-@app.route("/login.html", methods=['POST', 'GET'])
+@application.route("/login.html", methods=['POST', 'GET'])
 def login():
     if request.method == "POST":
         username_input = request.form["username_input"]
@@ -102,7 +103,7 @@ def login():
 
         if user: #aka there is a user with that username
             if user.password == password_input:
-                app.secret_key = secrets.token_urlsafe(16) #so this resets the session
+                application.secret_key = secrets.token_urlsafe(16) #so this resets the session
                 session["logged_in"] = True
                 session["username"] = user.username
                 session["user_id"] = user.id
@@ -115,11 +116,11 @@ def login():
     else: #first visit, no request
         return render_template("login.html")
 
-@app.route('/logout')
+@application.route('/logout')
 def logout():
     session.clear()
-    app.secret_key = secrets.token_urlsafe(16) #so this resets the session
+    application.secret_key = secrets.token_urlsafe(16) #so this resets the session
     return redirect("/")
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    application.run(debug=True, use_reloader=False)
