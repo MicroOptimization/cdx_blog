@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, session
+from flask import Flask, render_template, request, redirect, session, send_from_directory
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import desc
 from datetime import datetime
@@ -7,15 +7,15 @@ import sqlite3
 from sqlite3 import IntegrityError
 import secrets
 
+
 basedir = os.path.abspath(os.path.dirname(__file__))
 
 application = Flask(__name__)
 application.config['SQLALCHEMY_DATABASE_URI']="sqlite:///"+os.path.join(basedir, "instance/posts.db")
 application.secret_key = secrets.token_urlsafe(16)
-    
+
 with application.app_context():
     db = SQLAlchemy(application)
-
 
 class Article(db.Model):
     id = db.Column(db.Integer, primary_key = True)
@@ -40,6 +40,7 @@ class User(db.Model):
 def main():
     #session['logged_in'] = False
     articles = Article.query.order_by(Article.date_created.desc()).all()
+    #print(render_template("index.html", articles=articles, session=session))
     return render_template("index.html", articles=articles, session=session)
 
 @application.route("/new_article.html", methods=['GET', 'POST'])

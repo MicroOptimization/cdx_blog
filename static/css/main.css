@@ -2,24 +2,38 @@ body, html {
     /*margin: 25px 50px;*/
     line-height: 20px; /*probably important, fuck with this as neccesary*/
 
-    margin-left: 50px;
-    margin-right: 50px;
+    margin-left: 2.6vw;
+    margin-right: 2.6vw;
     font-family: sans-serif;
     background-color: white
 }
 
 h1 {
-    font-size: 75px;
-    margin-left: 50px;
-    margin-right: 50px;
+    /*font-size: 75px;*/
+    font-size: 3.9vw;
+    margin-left: 2.6vw;
+    margin-right: 2.6vw;
 
-    margin-top: 60px;
+    margin-top: 6.4vh;
 }
+
+@media screen and (max-width: 800px) {
+  h1 {
+    font-size:10vw; /* The width is 100%, when the viewport is 800px or smaller */
+    margin-bottom: 7vh;
+  }
+  
+  .new_article_btn, .login_btn {
+    display: none;
+  }
+
+}
+
 
 h3 { /*article title*/
     font-size: 30px;
-    margin-bottom: 5px;
-    margin-top: 15px;
+    margin-bottom: 0.26vh;
+    margin-top: 0.78vh;
     /*margin-top: 50px;*/ /*for when there is no hr*/
     
 
@@ -107,4 +121,13 @@ td {
     
     float:right; 
     font-size:15px;
+}
+
+
+.cur_user_display {
+    font-size:20px;
+}
+
+.login_btn, .logout_btn {
+    font-size:20px;
 }
