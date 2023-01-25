@@ -2,6 +2,7 @@ env3
 instance
 __pycache__/
 bcrypt_test.py
+test_passwords.txt
 
 *.zip
 *.rar
