@@ -7,6 +7,7 @@ import sqlite3
 from sqlite3 import IntegrityError
 import secrets
 import platform
+import bcrypt
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 
@@ -95,6 +96,7 @@ def edit(id):
             return render_template("edit.html", article=article_to_edit)
         else:
             return redirect("/login.html")
+
 @application.route("/login.html", methods=['POST', 'GET'])
 def login():
     if request.method == "POST":
@@ -104,7 +106,7 @@ def login():
         user = User.query.filter_by(username=username_input).first()
 
         if user: #aka there is a user with that username
-            if user.password == password_input:
+            if bcrypt.checkpw(password_input.encode('utf8'), user.password.encode('utf8')):
                 application.secret_key = secrets.token_urlsafe(16) #so this resets the session
                 session["logged_in"] = True
                 session["username"] = user.username
