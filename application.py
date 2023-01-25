@@ -126,6 +126,7 @@ def logout():
     application.secret_key = secrets.token_urlsafe(16) #so this resets the session
     return redirect("/")
 
+#this is a jinja filter that I wrote
 @application.template_filter()
 def apply_est(dt):
     est = (dt - timedelta(hours=5)).strftime('%m/%d/%Y %H:%M')
