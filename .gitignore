@@ -3,4 +3,6 @@ instance
 __pycache__/
 *.zip
 *.rar
+
 *.db
+!instance/*.db

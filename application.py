@@ -6,7 +6,7 @@ import os
 import sqlite3
 from sqlite3 import IntegrityError
 import secrets
-
+import platform
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 
@@ -128,8 +128,11 @@ def logout():
 def apply_est(dt):
     est = (dt - timedelta(hours=5)).strftime('%m/%d/%Y %H:%M')
     twelve = datetime.strptime(est, '%m/%d/%Y %H:%M')
-    
-    return twelve.strftime("%m/%d/%Y  %#I:%M %p")
+
+    if platform.system().lower() == "windows":
+        return twelve.strftime("%m/%d/%Y  %#I:%M %p")
+    else:
+        return twelve.strftime("%m/%d/%Y  %-I:%M %p")
 
 if __name__ == "__main__":
     application.run(debug=True, use_reloader=False)
