@@ -34,16 +34,14 @@
             <div style="clear: both">
                 
                 <h4 style="float: left">{{ article.tags }}</h4>
-                <h4 style="float: right">{{ article.date_created.strftime('%Y-%m-%d') }}</h4>
-                
+                <h4 style="float: right">{{ article.date_created|apply_est }}</h4>
             </div>
         </div>
         <br>
         <div class="content_div">
             {{ article.content|safe }}
         </div>
-        <!--<p>{{ article.content }}</p>-->
-        
+
         <br>
         
     {% endfor %}

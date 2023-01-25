@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, session, send_from_directory
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import desc
-from datetime import datetime
+from datetime import datetime, timezone, timedelta
 import os
 import sqlite3
 from sqlite3 import IntegrityError
@@ -41,6 +41,7 @@ def main():
     #session['logged_in'] = False
     articles = Article.query.order_by(Article.date_created.desc()).all()
     #print(render_template("index.html", articles=articles, session=session))
+    #tz = pytz.timezone("Canada/Eastern")
     return render_template("index.html", articles=articles, session=session)
 
 @application.route("/new_article.html", methods=['GET', 'POST'])
@@ -122,6 +123,13 @@ def logout():
     session.clear()
     application.secret_key = secrets.token_urlsafe(16) #so this resets the session
     return redirect("/")
+
+@application.template_filter()
+def apply_est(dt):
+    est = (dt - timedelta(hours=5)).strftime('%m/%d/%Y %H:%M')
+    twelve = datetime.strptime(est, '%m/%d/%Y %H:%M')
+    
+    return twelve.strftime("%m/%d/%Y  %#I:%M %p")
 
 if __name__ == "__main__":
     application.run(debug=True, use_reloader=False)
