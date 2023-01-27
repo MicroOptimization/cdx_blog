@@ -18,9 +18,7 @@
     </label>
 </div>
 -->
-<a href="/profile.html">profile</a>
-       
-<div style="margin-bottom: 100px">
+<div style="margin-bottom: 100px    ">
     {% if session['logged_in'] == True %}
         <h3 class="cur_user_display">Welcome User: {{ session.username }}</h3>
         <h3 class="logout_btn"><a href="logout">Logout</a></h3>
@@ -51,6 +49,7 @@
             </div>
         </div>
         <br>
+        
         <div class="content_div">
             {{ article.content|safe }}
         </div>

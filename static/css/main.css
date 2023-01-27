@@ -17,14 +17,14 @@ h1 {
     margin-left: 2.6vw;
     margin-right: 2.6vw;
 
-    margin-top: 6.4vh;
+    margin-top: 1.5vh;
 }
 
 @media screen and (max-width: 800px) {
   h1 {
     font-size:7.7vw; /* The width is 100%, when the viewport is 800px or smaller */
     margin-bottom: 3vh;
-    margin-top: 5vh;
+    margin-top: 3vh;
     /*
     margin-left: 0vw;
     margin-right: 0vw;*/
@@ -45,6 +45,20 @@ h3 { /*article title*/
 
     padding-bottom: 0px;
     padding-top: 0px;
+}
+
+@media screen and (max-width: 800px) {
+  h3 {
+    font-size: 25px;
+    margin-bottom: 0vh;
+    margin-top: 0.78vh;
+    /*margin-top: 50px;*/ /*for when there is no hr*/
+    
+
+    padding-bottom: 0px;
+    padding-top: 0px;
+  }
+ 
 }
 
 h4 { /*article tags*/
@@ -72,6 +86,12 @@ hr {
     text-align:left;
 }
 
+
+@media screen and (max-width: 800px) {
+  .article_info {
+    margin-bottom:25px;
+  }
+}
 p {
     
     margin-top: 15px;
@@ -143,98 +163,51 @@ td {
 
 
 
-/*For my fancy night mode toggler*/
 
-/* The switch - the box around the slider */
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 60px;
-  height: 34px;
+
+
+
+
+.nav_list {
+  display: flex;
+  justify-content: right;
+
+  list-style-type: none;
+  overflow: hidden;
 }
 
-/* Hide default HTML checkbox */
-.switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
 
-/* The slider */
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  -webkit-transition: .4s;
-  transition: .4s;
-}
+.nav_anchor {
 
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 26px;
-  width: 26px;
-  left: 4px;
-  bottom: 4px;
-  background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
-}
-
-input + .slider {
-  background-color: black;
-}
-
-input:checked + .slider {
-  background-color: purple;
-}
-
-input:focus + .slider {
-  box-shadow: 0 0 1px yellow;
-}
-
-input:checked + .slider:before {
-  -webkit-transform: translateX(26px);
-  -ms-transform: translateX(26px);
-  transform: translateX(26px);
-}
-
-/* Rounded sliders */
-.slider.round {
-    accent-color: #9b59b6;
-    border-radius: 34px;
-
-}
-
-.slider.round:before {
-  border-radius: 50%;
+  font-size: 20px;
+  color: white;
+  display: block;
+  padding: 15px 30px;
   
+  
+  background-color: #1b1b1b;
 }
 
+@media screen and (max-width: 800px) {
+  .nav_list {
+    margin-top: 10px;
+    margin-bottom:0px;
+    list-style-type: none;
 
+  }
 
-.bio_content {
-  /*
-  margin-left: 5vw;
-  margin-right: 5vw;*/
-  text-align: center;
-  width:inherit;
+  .nav_div {
+    display:flex;
+    justify-content: left;
+    margin-bottom: 0px;
+  }
+
+  .nav_anchor {
+    font-size: 15px;
+    color: white;
+    padding: 5px 10px;
+    margin:0px;
+    
+    background-color: #1b1b1b;
+  }
 }
-
-
-
-.bio_span {
-  float:left;
-  margin: 0px;
-  background-color:aquamarine;
-
-}
-
-.img_span {
-  margin: 0px;
-  float:left;
-} 
