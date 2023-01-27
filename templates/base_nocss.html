@@ -4,16 +4,8 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
         
-        <!--
-        <style>
-            body {
-                background-color: black;
-                color: white;
-            }
-        </style>
-        -->
+        {% block head %} {% endblock %}
         <title>Jackie Zhen: Software Engineer and Web Developer</title>
         
         <meta name="description" content="Jackie Zhen's Software Engineering Portfolio and Blog">
@@ -24,8 +16,7 @@
         <link rel="manifest" href="{{ url_for('static', filename='favicons/site.webmanifest') }}">
         
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        {% block head %} {% endblock %}
-
+    
     </head>
 
     <!-- Google tag (gtag.js) -->
@@ -42,14 +33,9 @@
 
 
     <body>
-        <div>
-            <a href="/"><h1>Jackie Zhen's Website</h1></a>
-            
-        </div>
-
         {% block body %} {% endblock %}
         <br>
-        <div style="margin-bottom: 25px;">
+        <div style="margin-bottom: 25px; text-align:center;">
             <label>Codiacs Co™</label>
         </div>
     </body>

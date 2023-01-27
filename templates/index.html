@@ -7,6 +7,19 @@
 
 
 {% block body %}
+<!--<a href="dark_toggle">Night Mode</a>
+
+<div style="float:right;">            
+    <label class="switch">
+        <form method="POST">
+            <input type="checkbox" name="dark_toggle" href="dark_toggle">
+            <span class="slider round"></span>
+        </form>
+    </label>
+</div>
+-->
+<a href="/profile.html">profile</a>
+       
 <div style="margin-bottom: 100px">
     {% if session['logged_in'] == True %}
         <h3 class="cur_user_display">Welcome User: {{ session.username }}</h3>

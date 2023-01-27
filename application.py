@@ -39,7 +39,6 @@ class User(db.Model):
 
 @application.route("/")
 def main():
-    #session['logged_in'] = False
     articles = Article.query.order_by(Article.date_created.desc()).all()
     #print(render_template("index.html", articles=articles, session=session))
     #tz = pytz.timezone("Canada/Eastern")
@@ -136,6 +135,18 @@ def apply_est(dt):
         return twelve.strftime("%m/%d/%Y  %#I:%M %p")
     else:
         return twelve.strftime("%m/%d/%Y  %-I:%M %p")
+
+@application.route("/dark_toggle", methods=["GET", "POST"])
+def dark_toggle():
+    print("here")
+    #text = request.form['night_checkbox']
+    print(request.form.getlist('night_checkbox'))
+
+    return redirect("/")
+
+@application.route("/profile.html")
+def profile():
+    return render_template("profile.html")
 
 if __name__ == "__main__":
     application.run(debug=True, use_reloader=False)
