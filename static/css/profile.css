@@ -1,4 +1,4 @@
-*{
+* {
     background: #F2EBEC;
     text-decoration:none;
 }
@@ -32,18 +32,10 @@
     border-radius: 500px;
 }
 
-.contact_div * {
-    margin:50px;
-}
-
-.contact_div {
-    margin-top:50px;
-    margin-bottom:50px;
-    text-align:center;
-}
-
 .links {
     font-size: 25px;
+    text-align:left;
+    margin-left: 25px;
 }
 
 .bio_content {
@@ -54,20 +46,49 @@
     font-size: 50px;
 }
 
-.contact_div * {
 
+
+
+.contact_div {
+    margin-top:35px;
+    margin-bottom:35px;
+    text-align:center;
+}
+
+.contact_div * {
     width: 115px;
     height: 25px;
-    background: black;
+    background: #2b2b2b;
     padding: 10px;
     text-align: center;
     border-radius: 5px;
-    color: white;
+    color: #F2EBEC;
     font-weight: bold;
     line-height: 25px;
+    margin:15px;
 }
 
 .email_div {
     text-align:center;
     visibility:hidden;
+    font-size: 25px;
+    font-family: Calibri;
+}
+
+a {
+    color: black; 
+    text-decoration: none;
+
+}
+
+li {
+    color: #2b2b2b
+}
+
+.contact_title {
+    text-align: center;
+    font-size: 50px;
+    font-family: Calibri;
+    margin-bottom: 0px;
+    margin-top: 45px;
 }

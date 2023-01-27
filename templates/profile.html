@@ -2,7 +2,8 @@
 
 {% block head %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/profile.css') }}">
-        
+<script type="text/javascript" src="{{ url_for('static', filename='scripts.js') }}"></script>
+
 {% endblock %}
 
 
@@ -25,12 +26,14 @@
 </br></br></br>
 <div class="wrapper_div">
     <div class="text_div">
-        <h2 class="bio_title">Jackie Zhen: <br><span style="color: black">Software Engineer<span></h2>
+        <h2 class="bio_title">Jackie Zhen <br><span style="color: black">Software Engineer<span></h2>
         <p class="bio_content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis et consectetur quam, in luctus felis. Vivamus sed nisl eros. Morbi tincidunt dignissim congue. Quisque tincidunt sem nec nibh luctus, vitae porta enim sodales. Maecenas ac malesuada erat. Praesent eleifend euismod elit, ut tincidunt libero rhoncus vel. Pellentesque ut fermentum risus. Praesent sodales magna vitae tellus tristique, sit amet porta magna dignissim. Sed libero ante, hendrerit ut fringilla malesuada, suscipit quis turpis. Quisque vitae euismod ex. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Nulla felis tortor, ullamcorper vel ante vel, porttitor imperdiet libero. Suspendisse efficitur sagittis tellus pharetra tempus egestas.</p>
 
         <div class="links">
-            <a class="bio_links">blog</a><br>
-            <a class="bio_links">portfolio</a>
+            <ul>
+                <li><a class="bio_links" href="/">blog</a><br></li>
+                <li><a class="bio_links">portfolio</a></li>
+            </ul>
         </div>
     </div>
     <br><br>
@@ -39,18 +42,22 @@
         <img src="static/images/portrait_resized.jpg" alt="Jackie Zhen's Portrait" class="portrait" width="40%" height="40%">
     </div>
 
-    
-</div>
-<div class="contact_div">
-    <a>Email</a>
-    <a href="https://www.linkedin.com/in/jackie-zhen-160a811a7/">Linkedin</a>
-    <a href="https://github.com/MicroOptimization">Github</a>
-    <a href="https://mobile.twitter.com/jackie_zhen">Twitter</a>
-</div>
 
-<div class="email_div">
-    <label>test.email@gmail.com</label>
 </div>
+    <div class="contact_title">
+        Contact Me:
+    </div>
+    <div class="contact_div">
+        <a href="#" onclick="showEmail();">Email</a>
+        <a href="https://www.linkedin.com/in/jackie-zhen-160a811a7/" target="_blank">Linkedin</a>
+        <a href="https://github.com/MicroOptimization" target="_blank">Github</a>
+        <a href="https://mobile.twitter.com/jackie_zhen" target="_blank">Twitter</a>
+    </div>
+
+    <div class="email_div">
+        <label id="email_label">Email: Jackiezhen538@gmail.com</label>
+    </div>
 <br>
+
 
 {% endblock %}
