@@ -93,3 +93,37 @@ li {
     margin-bottom: 0px;
     margin-top: 45px;
 }
+
+@media screen and (max-width: 800px) {
+    body * {
+        margin: 0px;
+        padding: 0px;
+    }
+
+    .bio_title {
+        font-size: 15px;
+    }
+
+    .text_div {
+        width:100%;
+        display:block;
+    }
+    
+    .image_div {
+        width: 50%; 
+        height: 100%; 
+        margin: auto;
+        margin-top:0px;
+        margin-left:0px;
+    }
+
+    .wrapper_div * {
+        margin: 0px;
+        padding: 0px;
+        
+        display: flex;
+        flex-direction: column;
+    }
+
+
+}

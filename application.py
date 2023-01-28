@@ -44,6 +44,10 @@ def main():
     #tz = pytz.timezone("Canada/Eastern")
     return render_template("index.html", articles=articles, session=session)
 
+@application.route("/profile.html")
+def profile():
+    return render_template("profile.html")
+
 @application.route("/new_article.html", methods=['GET', 'POST'])
 def add_new_article():
     if request.method == 'POST':
@@ -143,10 +147,6 @@ def dark_toggle():
     print(request.form.getlist('night_checkbox'))
 
     return redirect("/")
-
-@application.route("/profile.html")
-def profile():
-    return render_template("profile.html")
 
 if __name__ == "__main__":
     application.run(debug=True, use_reloader=False)
