@@ -33,7 +33,7 @@
     border-radius: 500px;
 }
 
-.links {
+.links{
     font-size: 25px;
     text-align:left;
     margin-left: 25px;
@@ -49,6 +49,14 @@
 
 
 
+
+.contact_title {
+    text-align: center;
+    font-size: 50px;
+    font-family: Calibri;
+    margin-bottom: 0px;
+    margin-top: 45px;
+}
 
 .contact_div {
     margin-top:35px;
@@ -79,20 +87,13 @@
 a {
     color: black; 
     text-decoration: none;
-
 }
 
 li {
     color: #2b2b2b
 }
 
-.contact_title {
-    text-align: center;
-    font-size: 50px;
-    font-family: Calibri;
-    margin-bottom: 0px;
-    margin-top: 45px;
-}
+
 
 @media screen and (max-width: 800px) {
     body * {
@@ -101,29 +102,96 @@ li {
     }
 
     .bio_title {
-        font-size: 15px;
+        font-size: 30px;
+        margin-bottom: 20px;
+        margin-top:10px;
     }
 
     .text_div {
-        width:100%;
+        width:90%;
         display:block;
+        margin:auto;
+    }
+
+    .bio_content {
+        margin:10px;
     }
     
     .image_div {
         width: 50%; 
         height: 100%; 
         margin: auto;
-        margin-top:0px;
+        margin-top:30px;
         margin-left:0px;
     }
+    
+    .portrait {
+        border-radius: 500px;
+        width:200%;
+    }
 
-    .wrapper_div * {
+    .wrapper_div {
         margin: 0px;
         padding: 0px;
         
         display: flex;
         flex-direction: column;
+        justify-content: center;
+    }
+    
+    .links li {
+        display: inline;
+    }
+
+    .links ul {
+        display:flex;
+        justify-content: center;
+        flex-direction: row-reverse;
+        gap:20vw;
+    }
+
+    .links{
+        font-size: 25px;
+        text-align:left;
+        margin: 0px;
+        margin-top:25px;
     }
 
 
+
+
+    .contact_title {
+        text-align: center;
+        font-size: 50px;
+        font-family: Calibri;
+        margin-bottom: 0px;
+        margin-top: 45px;
+    }
+
+    .contact_div {
+        margin-top:35px;
+        margin-bottom:35px;
+        text-align:center;
+    }
+
+    .contact_div * {
+        width: 115px;
+        height: 25px;
+        background: #2b2b2b;
+        padding: 10px;
+        text-align: center;
+        border-radius: 5px;
+        color: #F2EBEC;
+        font-weight: bold;
+        line-height: 25px;
+        margin:3px;
+    }
+
+    .email_div {
+        text-align:center;
+        visibility:hidden;
+        font-size: 25px;
+        font-family: Calibri;
+        margin-bottom:50px;
+    }
 }
