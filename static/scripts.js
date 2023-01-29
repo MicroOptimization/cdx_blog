@@ -7,54 +7,48 @@ function showEmail() {
 }
 
 
-$(document).ready(function() {
-    $("#btnSubmit").click(function(){
-        alert("button");
-    }); 
-});
 
-/*
-var position;
-	
-function getCaretPosition() {
-    var ctlTextArea = document.getElementById('article_content_input');
-    position = ctlTextArea.selectionStart;
-    return position;
+
+
+
+
+function insertAtCaret(areaId, text) {
+  var txtarea = document.getElementById(areaId);
+  if (!txtarea) {
+    return;
+  }
+
+  var scrollPos = txtarea.scrollTop;
+  var strPos = 0;
+  var br = ((txtarea.selectionStart || txtarea.selectionStart == '0') ?
+    "ff" : (document.selection ? "ie" : false));
+  if (br == "ie") {
+    txtarea.focus();
+    var range = document.selection.createRange();
+    range.moveStart('character', -txtarea.value.length);
+    strPos = range.text.length;
+  } else if (br == "ff") {
+    strPos = txtarea.selectionStart;
+  }
+
+  var front = (txtarea.value).substring(0, strPos);
+  var back = (txtarea.value).substring(strPos, txtarea.value.length);
+  txtarea.value = front + text + back;
+  strPos = strPos + text.length;
+  if (br == "ie") {
+    txtarea.focus();
+    var ieRange = document.selection.createRange();
+    ieRange.moveStart('character', -txtarea.value.length);
+    ieRange.moveStart('character', strPos);
+    ieRange.moveEnd('character', 0);
+    ieRange.select();
+  } else if (br == "ff") {
+    txtarea.selectionStart = strPos;
+    txtarea.selectionEnd = strPos;
+    txtarea.focus();
+  }
+
+  txtarea.scrollTop = scrollPos;
 }
 
-//Needs JQuery
-$(document).ready(function () {
-    console.log("here")
-    jQuery.fn.extend({
-        insertAtCaret: function (myValue) {
-            return this.each(function (i) {
-                if (document.selection) {
-                    //For browsers like Internet Explorer
-                    this.focus();
-                    sel = document.selection.createRange();
-                    sel.text = myValue;
-                    this.focus();
-                }
-                else if (this.selectionStart || this.selectionStart == '0') {
-                    //For browsers like Firefox and Webkit based
-                    var startPos = this.selectionStart;
-                    var endPos = this.selectionEnd;
-                    var scrollTop = this.scrollTop;
-                    this.value = this.value.substring(0, startPos) + myValue + this.value.substring(endPos, this.value.length);
-                    this.focus();
-                    this.selectionStart = startPos + myValue.length;
-                    this.selectionEnd = startPos + myValue.length;
-                    this.scrollTop = scrollTop;
-                } else {
-                    this.value += myValue;
-                    this.focus();
-                }
-            })
-        }
-    });
 
-    $('#insert_button').click(function () {
-        $("#article_content_input").insertAtCaret(' << inserted text! >> ');
-    });
-
-});*/

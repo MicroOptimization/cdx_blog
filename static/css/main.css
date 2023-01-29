@@ -204,3 +204,22 @@ td {
     background-color: #1b1b1b;
   }
 }
+
+.tag_insertions {
+  display:flex;
+  flex-direction:row;
+  
+  justify-content: flex-end;/*
+  text-align:right;*/
+  margin-right:500px;
+  margin-top:0px;
+}
+
+.tag_insertions > div {
+  float:right;
+}
+
+.tag_insertions * {
+  width:50px;
+  margin-top:10px;
+}
