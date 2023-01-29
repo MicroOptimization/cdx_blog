@@ -1,0 +1,13 @@
+body {
+    background: black;
+    color:white;
+}
+
+#title {
+    color:white;
+    font-size: 150px;
+}
+
+#trademark {
+    visibility: hidden;
+}

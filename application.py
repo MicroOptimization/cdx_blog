@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, session, send_from_directory
+from flask import Flask, render_template, request, redirect, session, send_from_directory, Blueprint
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import desc
 from datetime import datetime, timezone, timedelta
@@ -9,11 +9,14 @@ import secrets
 import platform
 import bcrypt
 
+import weather_dasher
+
 basedir = os.path.abspath(os.path.dirname(__file__))
 
 application = Flask(__name__)
 application.config['SQLALCHEMY_DATABASE_URI']="sqlite:///"+os.path.join(basedir, "instance/posts.db")
 application.secret_key = secrets.token_urlsafe(16)
+
 
 with application.app_context():
     db = SQLAlchemy(application)
@@ -140,6 +143,14 @@ def apply_est(dt):
     else:
         return twelve.strftime("%m/%d/%Y  %-I:%M %p")
 
+@application.route("/weatherdasher", methods=["POST", "GET"])
+def weather_dasher():
+    print("hi")
+    if request.method == "POST":
+        print(request.form["city_field"])
+        return render_template("weather_dasher.html")
+    else:
+        return render_template("weather_dasher.html")
 
 
 if __name__ == "__main__":

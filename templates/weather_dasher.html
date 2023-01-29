@@ -1,0 +1,21 @@
+{% extends 'base_nocss.html' %}
+
+
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/wd.css') }}">
+        
+{% endblock %}
+
+
+
+{% block body %}
+<h1 id="title">Weather Dasher</h1>
+
+<form method="POST">
+    <label>Enter your city:</label><br>
+    <input type="text" name="city_field">
+    <input type="submit" method="POST">
+</form>
+
+{% endblock %}
