@@ -223,3 +223,8 @@ td {
   width:50px;
   margin-top:10px;
 }
+
+.article_submit {
+  margin-bottom: 0px;
+  display:inline;
+}

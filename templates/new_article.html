@@ -17,7 +17,15 @@
         <label>Text</label><br>
         <textarea rows="25" cols="150" name="content_form" id="article_content_input"></textarea><br><br>
         
-        <input type="submit" method="POST">
+        <input type="submit" method="POST" class="article_submit">
+        
+        <div class="tag_insertions">
+            <div>
+                <input type="button" value="<p>" onclick="insertAtCaret('article_content_input', '<p></p>')">
+                <input type="button" value="<ul>" onclick="insertAtCaret('article_content_input', '<ul></ul>')">
+                <input type="button" value="<li>" onclick="insertAtCaret('article_content_input', '<li></li>')">
+            </div>
+        </div>
     </form>
 </div>
 {% endblock %}

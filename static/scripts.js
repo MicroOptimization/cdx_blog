@@ -6,12 +6,6 @@ function showEmail() {
     }
 }
 
-
-
-
-
-
-
 function insertAtCaret(areaId, text) {
   var txtarea = document.getElementById(areaId);
   if (!txtarea) {
