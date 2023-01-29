@@ -44,7 +44,7 @@ def main():
     #tz = pytz.timezone("Canada/Eastern")
     return render_template("index.html", articles=articles, session=session)
 
-@application.route("/profile.html")
+@application.route("/profile")
 def profile():
     return render_template("profile.html")
 
@@ -140,13 +140,7 @@ def apply_est(dt):
     else:
         return twelve.strftime("%m/%d/%Y  %-I:%M %p")
 
-@application.route("/dark_toggle", methods=["GET", "POST"])
-def dark_toggle():
-    print("here")
-    #text = request.form['night_checkbox']
-    print(request.form.getlist('night_checkbox'))
 
-    return redirect("/")
 
 if __name__ == "__main__":
     application.run(debug=True, use_reloader=False)
