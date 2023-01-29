@@ -1,5 +1,9 @@
 {% extends 'base.html' %}
 
+{% block head %}
+<script type="text/javascript" src="{{ url_for('static', filename='scripts.js') }}"></script>
+{% endblock %}
+
 {% block body %}
 <div>
     <form method="POST">
@@ -11,7 +15,7 @@
         <input type="text" name="tag_form"><br><br>
 
         <label>Text</label><br>
-        <textarea rows="25" cols="150" name="content_form"></textarea><br><br>
+        <textarea rows="25" cols="150" name="content_form" id="article_content_input"></textarea><br><br>
         
         <input type="submit" method="POST">
     </form>

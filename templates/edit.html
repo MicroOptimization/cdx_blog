@@ -1,8 +1,13 @@
 {% extends "base.html" %}
 
+{% block head %}
+<script type="text/javascript" src="{{ url_for('static', filename='scripts.js') }}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+{% endblock %}
+
 {% block body %}
 <div>
-    <form method="POST">
+    <form method="POST" id="article_form">
         <h2>Add New Article</h2>
         <label>Title</label><br>
         <input type="text" name="title_form" value="{{ article.title }}"><br><br>
@@ -11,9 +16,12 @@
         <input type="text" name="tag_form" value="{{ article.tags }}"><br><br>
 
         <label>Text</label><br>
-        <textarea rows="25" cols="150" name="content_form">{{ article.content }}</textarea><br><br>
+        <textarea rows="25" cols="150" name="content_form" id="article_content_input">{{ article.content }}</textarea><br><br>
         
         <input type="submit" method="POST" value="Update">
+
+        <br>
+        <input type="button" value="insert tag" id="btnSubmit">
     </form>
 </div>
 {% endblock %}
