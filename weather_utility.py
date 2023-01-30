@@ -3,7 +3,7 @@ from pyowm.utils import config
 from pyowm.utils import timestamps
 import pycountry
 
-owm = OWM('55aa234ef58918da44065e2e0f9cd91c')
+owm = OWM('')
 mgr = owm.weather_manager()
 
 def get_weather_dict(city):
