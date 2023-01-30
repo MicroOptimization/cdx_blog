@@ -1,33 +1,42 @@
 from pyowm import OWM
 from pyowm.utils import config
 from pyowm.utils import timestamps
+import pycountry
 
-owm = OWM('')
+owm = OWM('55aa234ef58918da44065e2e0f9cd91c')
 mgr = owm.weather_manager()
 
+def get_weather_dict(city):
+    input_country = "Canada"
+    city = "charlotte"
+    country = pycountry.countries.get(name=input_country)
+    #a2_country = country.alpha_2
 
-observation = mgr.weather_at_place('Toronto, CA')
+    observation = mgr.weather_at_place(city)
+    uvmgr = owm.uvindex_manager()
+    uvi = uvmgr.uvindex_around_coords(43.6532, 79.3832)
 
-uvmgr = owm.uvindex_manager()
-uvi = uvmgr.uvindex_around_coords(43.6532, 79.3832)
-print("uvi: " , uvi.value)
+    w = observation.weather
+    """
+    #debugging stuff
+    print("Location: " , city , ", " ,  input_country , "[" , a2_country , "]")
+    print("Detailed status: " , w.detailed_status)         
 
-w = observation.weather
+    print("uvi: " , uvi.value) #CHECK #might be wrong lol, idk
+    print("Wind: " , w.wind("meters_sec")) #it's in meters per second for some reason CHECK
+    print("Humidity: " , w.humidity) #CHECK              
+    print("Temp: " , w.temperature('celsius')) # CHECK
+            
+    print("Clouds" , w.clouds) #maybe important
+    print("Rain: " , w.rain) #probably important?                    
+    """
+    
+    wd = {} #weather dictionary
+    wd["desc"] = w.detailed_status 
+    wd["humidity"] = w.humidity
+    wd["temp"] = w.temperature('celsius')["temp"] #in celsius
 
-print("Detailed status: " , w.detailed_status)         
+    wd["wind"] = w.wind("meters_sec")["speed"] #in meters/sec for some reason
+    wd["uvi"] = uvi.value
 
-print("Wind: " , w.wind("meters_sec")) #it's in meters per second for some reason CHECK
-print("Humidity: " , w.humidity) #CHECK              
-print("Temp: " , w.temperature('celsius')) # CHECK
-print("Rain: " , w.rain)                    
-print("Heat: " , w.heat_index)              
-print("Clouds" , w.clouds)
-print("UV: " , w.weather_icon_name)      
-print(type(w))
-"""
-forecast = mgr.forecast_at_place('Leiria, PT', 'daily')
-answer = forecast.will_be_clear_at(timestamps.tomorrow())
-print(answer)
-
-
-"""
+    return wd
