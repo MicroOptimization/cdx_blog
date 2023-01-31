@@ -10,12 +10,52 @@
 
 
 {% block body %}
-<h1 id="title">Weather Dasher</h1>
+<div id="grid_div">
+    <div class="griddiv1">
+        <h1 id="title">Weather Dasher</h1>
+    </div>
+    <div class="griddiv2">
+        <div>
+            <label id="input_label">Enter a City</label><br>
+            <input type="text" id="input_field">
+            <input type="submit" id="input_submit">
+        </div>
+    </div>
+    <div class="griddiv3">
+        <div id="cur_day_div">
+            <h4 id="placedate">CityName: 01/30/2023</h4>
+            <label id="temp">Temperature: 3c</label>
+            <label id="humidity">Humidity: 77%</label>
+            <label id="wind">Wind Speed: 9.9kmph</label>
+            <label id="UV">UV Index: 1.5</label>
+            
+        </div>
+    </div>
+    <div class="griddiv4">
+        <div class="searchwrapper">
+            <div class="historydiv1">placeholder 1a</div>
+            <div class="historydiv2">placeholder 2a</div>
+            <div class="historydiv3">placeholder 3a</div>
+            <div class="historydiv4">placeholder 4a</div>
+            <div class="historydiv5">placeholder 5a</div>
+        </div>
+    </div>
+    <div class="griddiv5">
+        <div class="forecastdiv1">placeholder 1b</div>
+        <div class="forecastdiv2">placeholder 2b</div>
+        <div class="forecastdiv3">placeholder 3b</div>
+        <div class="forecastdiv4">placeholder 4b</div>
+        <div class="forecastdiv5">placeholder 5b</div>
+        
+    </div>
+</div>
+<!--
+    <h1 id="title">Weather Dasher</h1>
 
-<form method="POST">
-    <label>Enter your city:</label><br>
-    <input type="text" name="city_field">
-    <input type="submit" method="POST">
-</form>
-
+    <form method="POST">
+        <label>Enter your city:</label><br>
+        <input type="text" name="city_field">
+        <input type="submit" method="POST">
+    </form>
+-->
 {% endblock %}
