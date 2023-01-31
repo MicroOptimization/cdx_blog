@@ -7,7 +7,7 @@ import json
 from geopy.geocoders import Nominatim
 import datetime 
 
-owm = OWM('')
+#owm = OWM('')
 
 
 def get_weather_dict_old(city):
@@ -57,7 +57,7 @@ def get_coords(city):
 def get_weather_dict(lat, lon):
     wd = {}
 
-    api_key = "55aa234ef58918da44065e2e0f9cd91c"
+    api_key = ""
 
     url = "https://api.openweathermap.org/data/2.5/onecall?lat=%s&lon=%s&appid=%s&units=metric" % (lon, lat, api_key)
     response = requests.get(url)
