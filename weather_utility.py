@@ -6,76 +6,53 @@ import requests
 import json
 from geopy.geocoders import Nominatim
 import datetime 
-
-#owm = OWM('')
-
-
-def get_weather_dict_old(city):
-    mgr = owm.weather_manager()
-    input_country = "Canada"
-    city = "charlotte"
-    country = pycountry.countries.get(name=input_country)
-    #a2_country = country.alpha_2
-
-    observation = mgr.weather_at_place(city)
-    uvmgr = owm.uvindex_manager()
-    uvi = uvmgr.uvindex_around_coords(43.6532, 79.3832)
-
-    w = observation.weather
-    """
-    #debugging stuff
-    print("Location: " , city , ", " ,  input_country , "[" , a2_country , "]")
-    print("Detailed status: " , w.detailed_status)         
-
-    print("uvi: " , uvi.value) #CHECK #might be wrong lol, idk
-    print("Wind: " , w.wind("meters_sec")) #it's in meters per second for some reason CHECK
-    print("Humidity: " , w.humidity) #CHECK              
-    print("Temp: " , w.temperature('celsius')) # CHECK
-            
-    print("Clouds" , w.clouds) #maybe important
-    print("Rain: " , w.rain) #probably important?                    
-    """
-    
-    wd = {} #weather dictionary
-    wd["desc"] = w.detailed_status 
-    wd["humidity"] = w.humidity
-    wd["temp"] = w.temperature('celsius')["temp"] #in celsius
-
-    wd["wind"] = w.wind("meters_sec")["speed"] #in meters/sec for some reason
-    wd["uvi"] = uvi.value
-    return wd
+from datetime import date
 
 def get_coords(city):
     geolocator = Nominatim(user_agent='myapplication')
     location = geolocator.geocode(city)
-    #debuggin
-    #print(location.address)
-    #print(location.longitude)
-    #print(location.latitude)
-    return (location.longitude, location.latitude)
+    return (location.latitude, location.longitude)
 
 def get_weather_dict(lat, lon):
-    wd = {}
-
     api_key = ""
 
-    url = "https://api.openweathermap.org/data/2.5/onecall?lat=%s&lon=%s&appid=%s&units=metric" % (lon, lat, api_key)
+    url = "https://api.openweathermap.org/data/2.5/onecall?lat=%s&lon=%s&appid=%s&units=metric" % (lat, lon, api_key)
     response = requests.get(url)
     data = json.loads(response.text)
-    #print(type(data)) #this is all the weather data lol. Literally all of it
+    #print(type(data)) #this is ALL the weather data lol. Literally all of it #very messy json. There are online formatters if you wish to view it
     return data
 
 def process_weather_dict(wd):
     new_wd = {}
+    wd = wd["daily"]
 
-
+    for i in range(6):
+        wdtemp = wd[i]
+        cur = {}
+        cur["date"] = wdtemp["dt"]
+        cur["temp"] = wdtemp["temp"]["day"]
+        cur["humidity"] = wdtemp["humidity"]
+        cur["wind"] = wdtemp["wind_speed"]
+        cur["uv"] = wdtemp["uvi"]
+        cur["icon_code"] = wdtemp["weather"][0]["icon"]
+        new_wd[i] = cur
     return new_wd
 
-city = "toronto"
-coords = get_coords(city)
-wd = get_weather_dict(coords[0], coords[1])
-#for key in wd:
-#    print("Key: " , key , " Value: " , wd[key])
+#put in a city name string and it'll spit out the weather data for today and the 5 after it.
+def get_weather_data(city): #basically this function calls the 3 above it. 
+    
+    coords = get_coords(city)
+    wd = get_weather_dict(coords[0], coords[1])
+    wd = process_weather_dict(wd)
+    return wd
 
-print("---------------------------------------")
-print(wd)
+
+#good for debugging and viewing our data in a decent format
+""" 
+for key in wd: #the key is the offset from the first day so it goes from 0-5 (0 being today and 5 being 5 days from today)
+    day = wd[key]
+    print("day: " , day)
+    for key in day:
+        print(key, ": " , day[key])
+    print()
+"""
