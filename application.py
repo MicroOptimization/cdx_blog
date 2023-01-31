@@ -145,7 +145,6 @@ def apply_est(dt):
 
 @application.route("/weatherdasher", methods=["POST", "GET"])
 def weather_dasher():
-    print("hi")
     if request.method == "POST":
         print(request.form["city_field"])
         return render_template("weather_dasher.html")

@@ -12,11 +12,13 @@
 {% block body %}
 <div id="grid_div">
     <div class="griddiv1">
-        <h1 id="title">Weather Dasher</h1>
+        <div class="titlewrapper">
+            <h1 id="title">Weather Dasher</h1>
+        </div>
     </div>
     <div class="griddiv2">
         <div>
-            <label id="input_label">Enter a City</label><br>
+            <label id="input_label">Enter a City:</label><br>
             <input type="text" id="input_field">
             <input type="submit" id="input_submit">
         </div>
@@ -33,20 +35,39 @@
     </div>
     <div class="griddiv4">
         <div class="searchwrapper">
-            <div class="historydiv1">placeholder 1a</div>
-            <div class="historydiv2">placeholder 2a</div>
-            <div class="historydiv3">placeholder 3a</div>
-            <div class="historydiv4">placeholder 4a</div>
-            <div class="historydiv5">placeholder 5a</div>
+            <div class="historydiv1"><div>placeholder 1a</div></div>
+            <div class="historydiv2"><div>placeholder 2a</div></div>
+            <div class="historydiv3"><div>placeholder 3a</div></div>
+            <div class="historydiv4"><div>placeholder 4a</div></div>
+            <div class="historydiv5"><div>placeholder 5a</div></div>
         </div>
     </div>
+
     <div class="griddiv5">
-        <div class="forecastdiv1">placeholder 1b</div>
-        <div class="forecastdiv2">placeholder 2b</div>
-        <div class="forecastdiv3">placeholder 3b</div>
-        <div class="forecastdiv4">placeholder 4b</div>
-        <div class="forecastdiv5">placeholder 5b</div>
-        
+        <div>
+            <h4 id="forecasttitle">5 Day Forecast</h4>
+            <div class="forecastwrapper">
+                <div class="forecastdiv1">
+                    <div>
+                        <label>01/25/2023</label>
+                        <img src="https://openweathermap.org/img/wn/01d@2x.png"> <!--replace the 01d with the code for your weather condition-->
+                        <label>Temp 99f</label>
+                        <label>Humidity: 42%</label>
+                    </div>
+                </div>
+                <div class="forecastdiv2">
+                    <div>
+                        <label>01/26/2023</label>
+                        <img src="https://openweathermap.org/img/wn/02n@2x.png">
+                        <label>Temp 72f</label>
+                        <label>Humidity: 64%</label>
+                    </div>
+                </div>
+                <div class="forecastdiv3">placeholder 3b</div>
+                <div class="forecastdiv4">placeholder 4b</div>
+                <div class="forecastdiv5">placeholder 5b</div>
+            </div>
+        </div>
     </div>
 </div>
 <!--
