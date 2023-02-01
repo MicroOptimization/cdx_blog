@@ -4,7 +4,7 @@
 
 {% block head %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/wd.css') }}">
-        
+<script type="text/javascript" src="{{ url_for('static', filename='scripts.js') }}"></script>
 {% endblock %}
 
 
@@ -19,10 +19,15 @@
     <div class="griddiv2">
         
         <div>
-            <form method="POST">
+            <form method="POST" id="searchform">
                 <label id="input_label">Enter a City:</label><br>
                 <input type="text" id="input_field" name="city_field">
                 <input type="submit" id="input_submit" method="POST">
+                <script>
+                    function reset_form() {
+                        document.getElementById("searchform").reset();
+                    }
+                </script>
             </form>
         </div>
         
@@ -47,11 +52,11 @@
     <div class="griddiv4">
         <div class="searchwrapper">
             {% if ps != None %}
-                
+                <form id="historyform" method="POST">
                 {% for search in ps %}
-                <div class="historydiv1"><div>{{search}}</div></div>
+                    <div class="historydiv"><input type="submit" value="{{search}}" name="historybuttonfield"></div>
                 {% endfor %}
-                
+                </form>
             {% endif %}
         </div>
     </div>

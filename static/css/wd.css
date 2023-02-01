@@ -6,14 +6,14 @@ body {
 }
 
 body * {
-        color:white;
+    color:white;
 }
 
 #grid_div { /* the grid itself */
     display: grid;
     grid-template-columns: auto auto auto auto;
     grid-template-rows: 20vh 20vh 20vh 20vh 20vh;
-    
+    margin-bottom:0px;
 }
 
 #grid_div > div {
@@ -132,32 +132,38 @@ body * {
     /*background-color: rgb(108, 38, 38);*/
 }
 
-.searchwrapper > div {
+#historyform {
+    height:100%;
+    width:100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction:column;
+}
+
+#historyform > div { /*contains jinja (historydiv)*/ 
     height: 20%;
     width: 100%;
     border-style: solid;
-    border-width:1px;
+    border-width: 1px;
     border-color: black;
     background-color: rgb(237, 237, 237);
-    /*
 
-    text-align:center;
-    vertical-align: middle;
-*/
     display: flex;
     justify-content: left;
     align-items: center;
 }
 
-.searchwrapper > div > div {
-    padding-left: 30px;
+.historydiv > input {
+    height:100%;
+    width:100%;
+    background-color: rgb(237, 237, 237);
+
+    padding:0px;
     font-size: 30px;
     color:black;    
 }
-
-
-
-
 
 
 .griddiv5 { /* 5 day forecast for cur day*/
@@ -232,7 +238,7 @@ body * {
 }
 
 #trademark {
-    visibility: hidden;
+    /*visibility: hidden;*/
     display: none;
 }
 

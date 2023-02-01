@@ -45,4 +45,11 @@ function insertAtCaret(areaId, text) {
   txtarea.scrollTop = scrollPos;
 }
 
+function clear_input(id) {
+  console.log("js running")
+  var frm = document.getElementsByName(id)[0];
+  frm.submit(); // Submit
+  frm.reset();  // Reset
+  return false; // Prevent page refresh
 
+}

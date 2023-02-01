@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, session, send_from_directory, Blueprint
+from flask import Flask, render_template, request, redirect, session, send_from_directory, Blueprint, url_for
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import desc
 from datetime import datetime, timezone, timedelta
@@ -16,7 +16,6 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 application = Flask(__name__)
 application.config['SQLALCHEMY_DATABASE_URI']="sqlite:///"+os.path.join(basedir, "instance/posts.db")
 application.secret_key = secrets.token_urlsafe(16)
-
 
 with application.app_context():
     db = SQLAlchemy(application)
@@ -143,21 +142,38 @@ def apply_est(dt):
     else:
         return twelve.strftime("%m/%d/%Y  %-I:%M %p")
 
+@application.template_filter()        
+def debug(text):
+  print(text)
+  return ''
+
+#environment.filters['debug']=debug
+
+
 @application.route("/weatherdasher", methods=["POST", "GET"])
 def weather_dasher():
     wd = None
     ps = None
     if request.method == "POST":
-        city_name = request.form["city_field"]
-        #print("city: " , city_name)
+        print(type(request.form))
+        if "city_field" in request.form:
+            city_name = request.form["city_field"]
+        elif "historybuttonfield" in request.form:
+            city_name = request.form["historybuttonfield"]
+        print("city: " , city_name)
         wd = weather_utility.get_weather_data(city_name)
         ps = weather_utility.get_prev_searches()
+        session["wd"] = wd
+        session["ps"] = ps
         if wd == None:
             print("city not found")
+            #return redirect(url_for("weather_dasher", wd=wd, ps=ps))
+            #return render_template("weather_dasher.html", wd=wd, ps=ps)
             return render_template("weather_dasher.html", wd=wd, ps=ps)
         else:
             print("here")
             return render_template("weather_dasher.html", wd=wd, ps=ps)
+            #return render_template("weather_dasher.html", wd=wd, ps=ps)
     else:
         print("here instead")
         return render_template("weather_dasher.html", wd=wd, ps=ps)
