@@ -47,6 +47,20 @@
                 <img id = "cur_day_img" src="https://openweathermap.org/img/wn/{{ wd[0]['icon_code'] }}@2x.png">
             </div>
         </div>
+        {% else %}
+        <div id="cur_day_wrapper">
+            <div id="cur_day_div">    
+                <h4 id="placedate">Location: </h4>
+                <label id="temp">Temperature: </label>
+                <label id="humidity">Humidity: </label>
+                <label id="wind">Wind Speed: </label>
+                <label id="uv">UV Index: </label>
+            </div>
+
+            <div id="icon_div">
+                <img></img>
+            </div>
+        </div>
         {% endif %}
     </div>
     <div class="griddiv4">
@@ -106,6 +120,17 @@
                         <label>Humidity: {{ wd[5]["humidity"] }}</label>
                     </div>
                 </div>
+                {% else %}
+                    {% for x in range(5) %}
+                    <div>
+                        <div>
+                            <label>Date: </label>
+                            <label>Icon: </label>
+                            <label>Temp: </label>
+                            <label>Humidity: </label>
+                        </div>
+                    </div>
+                    {% endfor %}
                 {% endif %}
             </div>
         </div>

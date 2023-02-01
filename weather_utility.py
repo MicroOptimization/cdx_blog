@@ -12,7 +12,6 @@ import geonamescache
 def get_coords(city):
     geolocator = Nominatim(user_agent='myapplication')
     location = geolocator.geocode(city)
-    #print("location: " , location)
     if location:
         return (location.latitude, location.longitude)
     else:
@@ -34,7 +33,6 @@ def process_weather_dict(wd, city):
     for i in range(6):
         wdtemp = wd[i]
         cur = {}
-        #datetime.datetime.fromtimestamp(wdtemp["dt"])
         cur["city"] = city[0].upper() + city[1:len(city)].lower() #just for formatting capitalization so toronto becomes Toronto
         cur["date"] = datetime.datetime.fromtimestamp(wdtemp["dt"])
         cur["temp"] = wdtemp["temp"]["day"]
@@ -54,19 +52,21 @@ def get_weather_data(city): #basically this function calls the 3 above it.
     if coords == (181, 181):
         return None
     else:
-        prev_searches.append(city[0].upper() + city[1:len(city)].lower())
+        if city[0].upper() + city[1:len(city)].lower() not in prev_searches:
+            #print("not in")
+            prev_searches.append(city[0].upper() + city[1:len(city)].lower())
+        else:
+            #print("in")
+            pass
+        #print("ps: " , prev_searches)
         if len(prev_searches) > 5:
             prev_searches.pop(0)
         wd = get_weather_dict(coords[0], coords[1])
         wd = process_weather_dict(wd, city)
         return wd
-
+        
 def get_prev_searches():
     return prev_searches
-
-#timestamp = 1675184400
-#temp = datetime.datetime.fromtimestamp(timestamp)
-#print(temp)
 
 #good for debugging and viewing our data in a decent format
 """ 

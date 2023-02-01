@@ -8,6 +8,7 @@ from sqlite3 import IntegrityError
 import secrets
 import platform
 import bcrypt
+import json
 
 import weather_utility
 
@@ -155,29 +156,31 @@ def weather_dasher():
     wd = None
     ps = None
     if request.method == "POST":
-        print(type(request.form))
+        #print("POSTING")
         if "city_field" in request.form:
             city_name = request.form["city_field"]
         elif "historybuttonfield" in request.form:
             city_name = request.form["historybuttonfield"]
-        print("city: " , city_name)
+        else:
+            #print("forms empty")
+            pass
+        #print("city: " , city_name)
         wd = weather_utility.get_weather_data(city_name)
         ps = weather_utility.get_prev_searches()
-        session["wd"] = wd
-        session["ps"] = ps
         if wd == None:
-            print("city not found")
+            #print("city not found")
             #return redirect(url_for("weather_dasher", wd=wd, ps=ps))
             #return render_template("weather_dasher.html", wd=wd, ps=ps)
             return render_template("weather_dasher.html", wd=wd, ps=ps)
         else:
-            print("here")
+            #print("here instead")
+
+            #return render_template("weather_dasher.html", wd=wd, ps=ps)
             return render_template("weather_dasher.html", wd=wd, ps=ps)
             #return render_template("weather_dasher.html", wd=wd, ps=ps)
     else:
-        print("here instead")
+        #print("here no post")
         return render_template("weather_dasher.html", wd=wd, ps=ps)
-
 
 if __name__ == "__main__":
     application.run(debug=True, use_reloader=False)
