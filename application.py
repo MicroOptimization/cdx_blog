@@ -9,7 +9,7 @@ import secrets
 import platform
 import bcrypt
 
-import weather_dasher
+import weather_utility
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 
@@ -145,11 +145,22 @@ def apply_est(dt):
 
 @application.route("/weatherdasher", methods=["POST", "GET"])
 def weather_dasher():
+    wd = None
+    ps = None
     if request.method == "POST":
-        print(request.form["city_field"])
-        return render_template("weather_dasher.html")
+        city_name = request.form["city_field"]
+        #print("city: " , city_name)
+        wd = weather_utility.get_weather_data(city_name)
+        ps = weather_utility.get_prev_searches()
+        if wd == None:
+            print("city not found")
+            return render_template("weather_dasher.html", wd=wd, ps=ps)
+        else:
+            print("here")
+            return render_template("weather_dasher.html", wd=wd, ps=ps)
     else:
-        return render_template("weather_dasher.html")
+        print("here instead")
+        return render_template("weather_dasher.html", wd=wd, ps=ps)
 
 
 if __name__ == "__main__":

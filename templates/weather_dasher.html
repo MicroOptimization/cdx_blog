@@ -17,29 +17,42 @@
         </div>
     </div>
     <div class="griddiv2">
+        
         <div>
-            <label id="input_label">Enter a City:</label><br>
-            <input type="text" id="input_field">
-            <input type="submit" id="input_submit">
+            <form method="POST">
+                <label id="input_label">Enter a City:</label><br>
+                <input type="text" id="input_field" name="city_field">
+                <input type="submit" id="input_submit" method="POST">
+            </form>
         </div>
+        
     </div>
     <div class="griddiv3">
-        <div id="cur_day_div">
-            <h4 id="placedate">CityName: 01/30/2023</h4>
-            <label id="temp">Temperature: 3c</label>
-            <label id="humidity">Humidity: 77%</label>
-            <label id="wind">Wind Speed: 9.9kmph</label>
-            <label id="UV">UV Index: 1.5</label>
-            
+        {% if wd != None %}
+        <div id="cur_day_wrapper">
+            <div id="cur_day_div">    
+                <h4 id="placedate">Location: {{ wd[0]["city"] }}   {{ wd[0]["date"].strftime("%m/%d/%Y") }}</h4>
+                <label id="temp">Temperature: {{ wd[0]["temp"] }}°C</label>
+                <label id="humidity">Humidity: {{ wd[0]["humidity"] }}%</label>
+                <label id="wind">Wind Speed: {{ wd[0]["wind"] }}km/h</label>
+                <label id="uv">UV Index: {{ wd[0]["uv"] }}</label>
+            </div>
+
+            <div id="icon_div">
+                <img id = "cur_day_img" src="https://openweathermap.org/img/wn/{{ wd[0]['icon_code'] }}@2x.png">
+            </div>
         </div>
+        {% endif %}
     </div>
     <div class="griddiv4">
         <div class="searchwrapper">
-            <div class="historydiv1"><div>placeholder 1a</div></div>
-            <div class="historydiv2"><div>placeholder 2a</div></div>
-            <div class="historydiv3"><div>placeholder 3a</div></div>
-            <div class="historydiv4"><div>placeholder 4a</div></div>
-            <div class="historydiv5"><div>placeholder 5a</div></div>
+            {% if ps != None %}
+                
+                {% for search in ps %}
+                <div class="historydiv1"><div>{{search}}</div></div>
+                {% endfor %}
+                
+            {% endif %}
         </div>
     </div>
 
@@ -47,29 +60,61 @@
         <div>
             <h4 id="forecasttitle">5 Day Forecast</h4>
             <div class="forecastwrapper">
+                {% if wd != None %}
                 <div class="forecastdiv1">
                     <div>
-                        <label>01/25/2023</label>
-                        <img src="https://openweathermap.org/img/wn/01d@2x.png"> <!--replace the 01d with the code for your weather condition-->
-                        <label>Temp 99f</label>
-                        <label>Humidity: 42%</label>
+                        <label>{{ wd[1]["date"].strftime("%m/%d/%Y") }}</label>
+                        <img src="https://openweathermap.org/img/wn/{{ wd[1]['icon_code'] }}@2x.png"> <!--replace the 01d with the code for your weather condition-->
+                        <label>Temp: {{ wd[1]["temp"] }}</label>
+                        <label>Humidity: {{ wd[1]["humidity"] }}</label>
                     </div>
                 </div>
                 <div class="forecastdiv2">
                     <div>
-                        <label>01/26/2023</label>
-                        <img src="https://openweathermap.org/img/wn/02n@2x.png">
-                        <label>Temp 72f</label>
-                        <label>Humidity: 64%</label>
+                        <label>{{ wd[2]["date"].strftime("%m/%d/%Y") }}</label>
+                        <img src="https://openweathermap.org/img/wn/{{ wd[2]['icon_code'] }}@2x.png">
+                        <label>Temp: {{ wd[2]["temp"] }}</label>
+                        <label>Humidity: {{ wd[2]["humidity"] }}</label>
                     </div>
                 </div>
-                <div class="forecastdiv3">placeholder 3b</div>
-                <div class="forecastdiv4">placeholder 4b</div>
-                <div class="forecastdiv5">placeholder 5b</div>
+                <div class="forecastdiv3">
+                    <div>
+                        <label>{{ wd[3]["date"].strftime("%m/%d/%Y") }}</label>
+                        <img src="https://openweathermap.org/img/wn/{{ wd[3]['icon_code'] }}@2x.png">
+                        <label>Temp: {{ wd[3]["temp"] }}</label>
+                        <label>Humidity: {{ wd[3]["humidity"] }}</label>
+                    </div>
+                </div>
+                <div class="forecastdiv4">
+                    <div>
+                        <label>{{ wd[4]["date"].strftime("%m/%d/%Y") }}</label>
+                        <img src="https://openweathermap.org/img/wn/{{ wd[4]['icon_code'] }}@2x.png">
+                        <label>Temp: {{ wd[4]["temp"] }}</label>
+                        <label>Humidity: {{ wd[4]["humidity"] }}</label>
+                    </div>
+                </div>
+                <div class="forecastdiv5">
+                    <div>
+                        <label>{{ wd[5]["date"].strftime("%m/%d/%Y") }}</label>
+                        <img src="https://openweathermap.org/img/wn/{{ wd[5]['icon_code'] }}@2x.png">
+                        <label>Temp: {{ wd[5]["temp"] }}</label>
+                        <label>Humidity: {{ wd[5]["humidity"] }}</label>
+                    </div>
+                </div>
+                {% endif %}
             </div>
         </div>
     </div>
 </div>
+
+<!--
+<div class="historydiv1"><div>placeholder 1a</div></div>
+<div class="historydiv2"><div>placeholder 2a</div></div>
+<div class="historydiv3"><div>placeholder 3a</div></div>
+<div class="historydiv4"><div>placeholder 4a</div></div>
+<div class="historydiv5"><div>placeholder 5a</div></div>
+-->
+
 <!--
     <h1 id="title">Weather Dasher</h1>
 

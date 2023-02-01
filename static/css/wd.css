@@ -48,11 +48,12 @@ body * {
     font-size:30px;
 }
 
-.griddiv2 > div > #input_field {
+.griddiv2 > div > form > #input_field {
     display: inline-block;
     font-size:30px;
+    color: black;
 }
-.griddiv2 > div > #input_submit {
+.griddiv2 > div > form > #input_submit {
     color: black;
     display: inline-block;
     font-size:30px;
@@ -70,16 +71,19 @@ body * {
     margin:0px;
 }
 
-#cur_day_div {
-    height: 70%;
-    width: 90%;
-    
+#cur_day_wrapper {
     border-color: white;
     border-style:solid;
     border-width:1px;
-
+    height: 70%;
+    width: 90%;
     background-color:#332F2E;
 
+    display:flex;
+    flex-direction: row;
+}
+
+#cur_day_div {
     display: flex;
     flex-direction: column;
     padding:15px;
@@ -98,6 +102,15 @@ body * {
 
 #cur_day_div > label {
     font-size: 3.9vh;
+}
+
+#icon_div {
+    height: 100%;
+    width: 10%;
+}
+
+#cur_day_img {
+    width:100%;
 }
 
 
@@ -222,3 +235,4 @@ body * {
     visibility: hidden;
     display: none;
 }
+

@@ -7,11 +7,16 @@ import json
 from geopy.geocoders import Nominatim
 import datetime 
 from datetime import date
+import geonamescache
 
 def get_coords(city):
     geolocator = Nominatim(user_agent='myapplication')
     location = geolocator.geocode(city)
-    return (location.latitude, location.longitude)
+    #print("location: " , location)
+    if location:
+        return (location.latitude, location.longitude)
+    else:
+        return (181, 181)
 
 def get_weather_dict(lat, lon):
     api_key = ""
@@ -22,30 +27,46 @@ def get_weather_dict(lat, lon):
     #print(type(data)) #this is ALL the weather data lol. Literally all of it #very messy json. There are online formatters if you wish to view it
     return data
 
-def process_weather_dict(wd):
+def process_weather_dict(wd, city):
     new_wd = {}
     wd = wd["daily"]
 
     for i in range(6):
         wdtemp = wd[i]
         cur = {}
-        cur["date"] = wdtemp["dt"]
+        #datetime.datetime.fromtimestamp(wdtemp["dt"])
+        cur["city"] = city[0].upper() + city[1:len(city)].lower() #just for formatting capitalization so toronto becomes Toronto
+        cur["date"] = datetime.datetime.fromtimestamp(wdtemp["dt"])
         cur["temp"] = wdtemp["temp"]["day"]
         cur["humidity"] = wdtemp["humidity"]
-        cur["wind"] = wdtemp["wind_speed"]
+        cur["wind"] = round((wdtemp["wind_speed"] * 60 * 60) / 1000) #now this is kmph
         cur["uv"] = wdtemp["uvi"]
         cur["icon_code"] = wdtemp["weather"][0]["icon"]
         new_wd[i] = cur
     return new_wd
 
+prev_searches = []
+
 #put in a city name string and it'll spit out the weather data for today and the 5 after it.
 def get_weather_data(city): #basically this function calls the 3 above it. 
-    
+    #wd = weather dictionary, keys are the offset from today (0-5)
     coords = get_coords(city)
-    wd = get_weather_dict(coords[0], coords[1])
-    wd = process_weather_dict(wd)
-    return wd
+    if coords == (181, 181):
+        return None
+    else:
+        prev_searches.append(city[0].upper() + city[1:len(city)].lower())
+        if len(prev_searches) > 5:
+            prev_searches.pop(0)
+        wd = get_weather_dict(coords[0], coords[1])
+        wd = process_weather_dict(wd, city)
+        return wd
 
+def get_prev_searches():
+    return prev_searches
+
+#timestamp = 1675184400
+#temp = datetime.datetime.fromtimestamp(timestamp)
+#print(temp)
 
 #good for debugging and viewing our data in a decent format
 """ 
