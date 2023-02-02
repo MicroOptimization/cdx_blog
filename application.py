@@ -183,4 +183,4 @@ def weather_dasher():
         return render_template("weather_dasher.html", wd=wd, ps=ps)
 
 if __name__ == "__main__":
-    application.run(debug=True, use_reloader=False)
+    application.run(debug=True, use_reloader=False, threaded=True)
