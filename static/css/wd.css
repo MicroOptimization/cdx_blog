@@ -130,6 +130,7 @@ body * {
     height: 90%;
     width: 90%;
     /*background-color: rgb(108, 38, 38);*/
+    /*align-items: flex-start;*/
 }
 
 #historyform {
@@ -137,8 +138,8 @@ body * {
     width:100%;
 
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-start;
+    /*align-items: flex-start;*/
     flex-direction:column;
 }
 
@@ -152,17 +153,18 @@ body * {
 
     display: flex;
     justify-content: left;
-    align-items: center;
+    /*align-items: flex-start;*/
 }
 
 .historydiv > input {
     height:100%;
     width:100%;
     background-color: rgb(237, 237, 237);
-
+    
     padding:0px;
     font-size: 30px;
-    color:black;    
+    color:black;
+    
 }
 
 
