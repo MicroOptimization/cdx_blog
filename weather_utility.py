@@ -8,6 +8,7 @@ from geopy.geocoders import Nominatim
 import datetime 
 from datetime import date
 import geonamescache
+import os
 
 def get_coords(city):
     geolocator = Nominatim(user_agent='myapplication')
@@ -18,7 +19,7 @@ def get_coords(city):
         return (181, 181)
 
 def get_weather_dict(lat, lon):
-    api_key = ""
+    api_key = os.environ["owm_key"]
 
     url = "https://api.openweathermap.org/data/2.5/onecall?lat=%s&lon=%s&appid=%s&units=metric" % (lat, lon, api_key)
     response = requests.get(url)
